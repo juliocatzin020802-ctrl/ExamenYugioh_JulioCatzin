@@ -1,1 +1,23 @@
-<p>expansion-filter works!</p>
+<div class="filter-container">
+  <label for="expansionSelect" class="filter-label">Filtrar por expansión:</label>
+  <div class="filter-controls">
+    <select 
+      id="expansionSelect" 
+      [ngModel]="selected || ''" 
+      (ngModelChange)="onChange($event)"
+      class="filter-select">
+      <option value="">Todas las expansiones</option>
+      @for (exp of expansions; track exp) {
+        <option [value]="exp">{{ exp }}</option>
+      }
+    </select>
+    
+    <button 
+      class="clear-btn" 
+      (click)="clearFilter()" 
+      [disabled]="!selected">
+      Quitar filtro
+    </button>
+  </div>
+  <p class="expansions-count">{{ expansions.length }} expansiones encontradas</p>
+</div>

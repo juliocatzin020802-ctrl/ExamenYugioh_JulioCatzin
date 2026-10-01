@@ -29,7 +29,7 @@ h1 {
     flex: 1;
   }
   .side-panel {
-    flex: 0 0 350px;
+    flex: 0 0 400px;
     position: sticky;
     top: 20px;
   }
@@ -41,6 +41,8 @@ h1 {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .selected-card-panel h2 {
@@ -56,6 +58,7 @@ h1 {
   display: flex;
   gap: 15px;
   align-items: flex-start;
+  margin-bottom: 20px;
 }
 
 .small-preview {
@@ -81,6 +84,14 @@ h1 {
 .detail-link:hover {
   text-decoration: underline;
   opacity: 0.8;
+}
+
+.selected-card-prints h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
 }
 
 .empty-selection-panel {

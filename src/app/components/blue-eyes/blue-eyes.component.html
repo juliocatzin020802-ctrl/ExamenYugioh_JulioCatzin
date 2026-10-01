@@ -2,8 +2,17 @@
   <h1>Blue-Eyes Collection</h1>
   
   <!-- Filtro (paso 08) -->
+  @if ((expansions$ | async); as expansions) {
+    @if (expansions.length > 0) {
+      <app-expansion-filter
+        [expansions]="expansions"
+        [selected]="selectedExpansion$ | async"
+        (expansionChange)="onExpansionChange($event)">
+      </app-expansion-filter>
+    }
+  }
 
-  @if (cards$ | async; as state) {
+  @if (vm$ | async; as state) {
     @if (state.status === 'success') {
       <p class="results-count">{{ state.data.length }} cartas del arquetipo Blue-Eyes</p>
 
@@ -32,6 +41,15 @@
                   <a [routerLink]="['/card', card.id]" class="detail-link">Ver detalle completo</a>
                 </div>
               </div>
+              
+              <div class="selected-card-prints">
+                <h4>Impresiones</h4>
+                <app-card-prints 
+                  [sets]="card.card_sets" 
+                  [highlightSet]="selectedExpansion$ | async">
+                </app-card-prints>
+              </div>
+
             </div>
           } @else {
             <div class="empty-selection-panel">
@@ -45,6 +63,7 @@
     } @else {
       <app-status-message
         [state]="state"
+        emptyText="Ninguna carta Blue-Eyes tiene impresión en esta expansión."
         (retry)="onRetry()">
       </app-status-message>
     }
