@@ -1,1 +1,27 @@
-<p>status-message works!</p>
+@if (state.status === 'idle') {
+  @if (idleText) {
+    <p class="idle-msg">{{ idleText }}</p>
+  }
+}
+
+@if (state.status === 'loading') {
+  <div class="loading-msg" role="status">
+    <div class="spinner"></div>
+    <p>Cargando…</p>
+  </div>
+}
+
+@if (state.status === 'empty') {
+  <div class="empty-msg" role="status">
+    <span class="icon">📭</span>
+    <p>{{ emptyText }}</p>
+  </div>
+}
+
+@if (state.status === 'error') {
+  <div class="error-msg" role="alert">
+    <span class="icon">⚠️</span>
+    <p>{{ state.message }}</p>
+    <button (click)="onRetry()">Reintentar</button>
+  </div>
+}
