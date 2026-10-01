@@ -1,1 +1,52 @@
-<p>blue-eyes works!</p>
+<div class="blue-eyes-container">
+  <h1>Blue-Eyes Collection</h1>
+  
+  <!-- Filtro (paso 08) -->
+
+  @if (cards$ | async; as state) {
+    @if (state.status === 'success') {
+      <p class="results-count">{{ state.data.length }} cartas del arquetipo Blue-Eyes</p>
+
+      <div class="layout-grid">
+        
+        <div class="main-content">
+          <!-- Grid -->
+          <div class="card-grid">
+            @for (card of state.data; track card.id) {
+              <app-card [card]="card" (cardSelected)="onCardSelected($event)"></app-card>
+            }
+          </div>
+        </div>
+
+        <div class="side-panel">
+          <!-- Panel de selección -->
+          @if (selectedCard(); as card) {
+            <div class="selected-card-panel">
+              <h2>Carta seleccionada</h2>
+              <div class="selected-card-info">
+                @if (card.card_images && card.card_images.length > 0 && card.card_images[0].image_url_small) {
+                  <img [src]="card.card_images[0].image_url_small" [alt]="card.name" class="small-preview" />
+                }
+                <div>
+                  <h3>{{ card.name }}</h3>
+                  <a [routerLink]="['/card', card.id]" class="detail-link">Ver detalle completo</a>
+                </div>
+              </div>
+            </div>
+          } @else {
+            <div class="empty-selection-panel">
+              <p>Selecciona una carta para ver sus detalles</p>
+            </div>
+          }
+        </div>
+
+      </div>
+
+    } @else {
+      <app-status-message
+        [state]="state"
+        (retry)="onRetry()">
+      </app-status-message>
+    }
+  }
+</div>
