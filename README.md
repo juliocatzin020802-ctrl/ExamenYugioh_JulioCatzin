@@ -1,59 +1,41 @@
-# BlueEyesCardExplorer
+# Blue-Eyes Card Explorer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
+Aplicación en Angular para explorar cartas de Yu-Gi-Oh! consumiendo la API de YGOPRODeck, enfocado en el arquetipo Blue-Eyes.
 
-## Development server
+## Integrantes
+- [NOMBRE COMPLETO A]
+- [NOMBRE COMPLETO B]
 
-To start a local development server, run:
+## Requerimientos Implementados
+- **Buscador (RF-01):** Búsqueda reactiva con RxJS (`debounceTime`, `switchMap`).
+- **Tarjetas de Resultados (RF-02):** Componente reutilizable para visualizar información básica de las cartas manejando valores dinámicos.
+- **Detalle de Carta (RF-03):** Vista detallada que extrae la información a fondo incluyendo las impresiones y rarezas.
+- **Blue-Eyes Collection (RF-04):** Página específica dedicada al arquetipo Blue-Eyes conectada directo con la API y visualizando datos cacheados.
+- **Expansiones (RF-05):** Procesamiento de datos de la API para mostrar una lista de expansiones dinámica (sin repeticiones) y visualizar los precios de impresiones de manera inteligente.
+- **Filtro (RF-06):** Filtrado dinámico en memoria, re-utilizando combinaciones de flujos reactivos.
+- **Gestión de Estados (RF-07):** Representación visual clara de estados `Loading`, `Success`, `Empty` y `Error`.
 
-```bash
-ng serve
+## Instrucciones de Ejecución
+
+1. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+
+2. Ejecutar el servidor de desarrollo:
+   ```bash
+   npm start
+   ```
+   *O alternativamente usa `ng serve` si tienes el CLI de Angular global.*
+
+Navega a `http://localhost:4200/` para ver la aplicación funcionando.
+
+## Estructura Principal de Carpetas
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+src/app/
+├─ models/        # Interfaces y tipos (card, view-state)
+├─ services/      # YugiohService (conexión con API)
+├─ utils/         # Operadores RxJS y funciones puras para expansiones
+├─ components/    # Componentes standalone (search, card, card-detail, blue-eyes, etc.)
+└─ app.routes.ts  # Configuración de navegación y rutas
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
