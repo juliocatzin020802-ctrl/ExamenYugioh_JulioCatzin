@@ -1,1 +1,31 @@
-<p>search works!</p>
+<div class="search-container">
+  <label for="searchInput" class="sr-only">Buscar carta</label>
+  <div class="search-input-group">
+    <input
+      id="searchInput"
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Ej. Blue-Eyes, Dark Magician, Kuriboh"
+      autocomplete="off"
+    />
+    <button (click)="clear()" [disabled]="!searchControl.value">Limpiar</button>
+  </div>
+</div>
+
+@if (results$ | async; as state) {
+  @if (state.status === 'success') {
+    <div class="card-grid">
+      @for (card of state.data; track card.id) {
+        <div class="simple-card">
+          <p>{{ card.name }}</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <app-status-message
+      [state]="state"
+      idleText="Escribe al menos 2 caracteres para buscar."
+      (retry)="onRetry()">
+    </app-status-message>
+  }
+}
