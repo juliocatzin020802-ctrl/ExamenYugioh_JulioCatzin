@@ -1,1 +1,31 @@
-<p>card works!</p>
+<div class="card-container" tabindex="0" (click)="onSelect()" (keydown)="onKeyDown($event)" role="button" [attr.aria-label]="'Ver detalle de ' + card.name">
+  <div class="card-image-wrapper">
+    @if (card.card_images && card.card_images.length > 0 && card.card_images[0].image_url_small) {
+      <img [src]="card.card_images[0].image_url_small" [alt]="card.name" loading="lazy" class="card-image" />
+    } @else {
+      <div class="no-image-placeholder">Sin imagen</div>
+    }
+  </div>
+  <div class="card-content">
+    <h3 class="card-title">{{ card.name }}</h3>
+    <p class="card-type">{{ card.type }}</p>
+    
+    <div class="card-stats">
+      @if (card.attribute) {
+        <span class="stat-badge attr">{{ card.attribute }}</span>
+      }
+      @if (hasValue(card.level)) {
+        <span class="stat-badge level">★ {{ card.level }}</span>
+      }
+    </div>
+
+    <div class="card-combat-stats">
+      @if (hasValue(card.atk)) {
+        <span class="combat-stat atk">ATK/ {{ card.atk }}</span>
+      }
+      @if (hasValue(card.def)) {
+        <span class="combat-stat def">DEF/ {{ card.def }}</span>
+      }
+    </div>
+  </div>
+</div>

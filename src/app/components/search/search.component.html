@@ -14,13 +14,21 @@
 
 @if (results$ | async; as state) {
   @if (state.status === 'success') {
+    <div class="results-header">
+      <p class="results-count">{{ state.data.length }} carta(s) encontrada(s)</p>
+    </div>
+    
     <div class="card-grid">
-      @for (card of state.data; track card.id) {
-        <div class="simple-card">
-          <p>{{ card.name }}</p>
-        </div>
+      @for (c of state.data | slice:0:visibleCount(); track c.id) { 
+        <app-card [card]="c" (cardSelected)="openDetail($event)"></app-card> 
       }
     </div>
+
+    @if (state.data.length > visibleCount()) {
+      <div class="show-more-container">
+        <button class="show-more-btn" (click)="showMore()">Mostrar más</button>
+      </div>
+    }
   } @else {
     <app-status-message
       [state]="state"

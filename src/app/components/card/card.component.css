@@ -1,0 +1,103 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  height: 100%;
+}
+
+.card-container:hover, .card-container:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.no-image-placeholder {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.card-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-type {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.card-stats {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  background-color: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.stat-badge.attr {
+  color: #aed581;
+}
+
+.stat-badge.level {
+  color: #ffd54f;
+}
+
+.card-combat-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.combat-stat {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.combat-stat.atk {
+  color: #ef5350;
+}
+
+.combat-stat.def {
+  color: #42a5f5;
+}

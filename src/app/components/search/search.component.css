@@ -56,10 +56,35 @@
   cursor: not-allowed;
 }
 
-.simple-card {
+.results-header {
+  margin-bottom: 1rem;
+}
+
+.results-count {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.show-more-btn {
+  padding: 10px 24px;
+  font-size: 1rem;
   background-color: var(--card-bg);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.show-more-btn:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
 }
