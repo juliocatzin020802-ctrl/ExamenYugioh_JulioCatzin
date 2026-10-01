@@ -1,1 +1,32 @@
-<p>card-prints works!</p>
+@if (!sets || sets.length === 0) {
+  <p class="no-prints-msg">Esta carta no tiene impresiones registradas.</p>
+} @else {
+  <div class="table-container">
+    <table class="prints-table">
+      <thead>
+        <tr>
+          <th>Expansión</th>
+          <th>Código</th>
+          <th>Rareza</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (set of sets; track set.set_code) {
+          <tr [class.highlight]="highlightSet === set.set_name">
+            <td>{{ set.set_name }}</td>
+            <td>{{ set.set_code }}</td>
+            <td>{{ set.set_rarity }}</td>
+            <td>
+              @if (set.set_price) {
+                $ {{ set.set_price }}
+              } @else {
+                N/D
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

@@ -1,0 +1,38 @@
+.no-prints-msg {
+  color: #888;
+  font-style: italic;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+}
+
+.prints-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.prints-table th, .prints-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.prints-table th {
+  background-color: rgba(255, 255, 255, 0.05);
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.prints-table tr:last-child td {
+  border-bottom: none;
+}
+
+.prints-table tr.highlight {
+  background-color: rgba(63, 81, 181, 0.2);
+}

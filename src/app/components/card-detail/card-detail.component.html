@@ -1,1 +1,65 @@
-<p>card-detail works!</p>
+<div class="header-actions">
+  <button class="back-btn" (click)="goBack()">← Volver</button>
+</div>
+
+@if (cardState$ | async; as state) {
+  @if (state.status === 'success' && state.data) {
+    <div class="card-detail-layout">
+      <div class="card-image-section">
+        @if (state.data.card_images && state.data.card_images.length > 0 && state.data.card_images[0].image_url) {
+          <img [src]="state.data.card_images[0].image_url" [alt]="state.data.name" class="detail-image" />
+        } @else {
+          <div class="no-image-detail">Imagen no disponible</div>
+        }
+      </div>
+
+      <div class="card-info-section">
+        <h2>{{ state.data.name }}</h2>
+        
+        <div class="tags-container">
+          <span class="tag type">{{ state.data.type }}</span>
+          @if (state.data.archetype) {
+            <span class="tag archetype">{{ state.data.archetype }}</span>
+          }
+          @if (state.data.attribute) {
+            <span class="tag attr">{{ state.data.attribute }}</span>
+          }
+          @if (hasValue(state.data.level)) {
+            <span class="tag level">Nivel/Rango: {{ state.data.level }}</span>
+          }
+        </div>
+
+        <div class="stats-container">
+          @if (hasValue(state.data.atk)) {
+            <div class="stat-box">
+              <span class="stat-label">ATK</span>
+              <span class="stat-value atk">{{ state.data.atk }}</span>
+            </div>
+          }
+          @if (hasValue(state.data.def)) {
+            <div class="stat-box">
+              <span class="stat-label">DEF</span>
+              <span class="stat-value def">{{ state.data.def }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="description-section">
+          <h3>Descripción</h3>
+          <p class="card-desc">{{ state.data.desc }}</p>
+        </div>
+
+        <div class="prints-section">
+          <h3>Impresiones</h3>
+          <app-card-prints [sets]="state.data.card_sets"></app-card-prints>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <app-status-message
+      [state]="state"
+      emptyText="La carta no existe"
+      (retry)="retry$.next()">
+    </app-status-message>
+  }
+}
